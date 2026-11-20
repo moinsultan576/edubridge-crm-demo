@@ -457,3 +457,4 @@ body.dragmode{user-select:none;cursor:grabbing}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .mini-list li span.av,.sres button span.av,.mini-list li span.pill{flex:none}
+@media (max-width:1280px) and (min-width:861px){.lnav a{padding:10px 9px;font-size:14.5px}.lhead-in{gap:12px}.lacts .btn{padding:0 14px}.lnav a{white-space:nowrap}}

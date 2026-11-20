@@ -118,7 +118,7 @@
   function eligCard(r) { return `<div class="welig ${r.result}"><div class="ring" style="--p:${r.score}"><b>${bdi(r.score)}</b></div><div><b>${t('el.' + r.result)}</b><ul>${r.reasons.map(x => `<li>${esc(x)}</li>`).join('')}</ul>${r.next && r.next.length ? `<small>${t('el.next')}:</small><ul>${r.next.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</div></div>`; }
   function chatMsgs() {
     const last = CHAT.items.length - 1;
-    return CHAT.items.map((m, i) => `<div class="wm ${m.who}">${m.live ? `<span class="livebadge">${t('ai.live')}</span>` : ''}<p>${m.flagC ? flag(m.flagC, 'xs') + ' ' : ''}${esc(m.text)}</p>
+    return CHAT.items.map((m, i) => `<div class="wm ${m.who}">${m.live ? `<span class="livebadge">${t('ai.live')}</span>` : ''}${m.text ? `<p>${m.flagC ? flag(m.flagC, 'xs') + ' ' : ''}${esc(m.text)}</p>` : ''}
       ${m.fields ? `<div class="wfields">${FIELD_KEYS.map(f => `<button class="wfield ${CHAT.ctx.field === f ? 'on' : ''}" data-act="aiField" data-f="${f}"><img src="${photo(FIELDS[f].photo, 240, 180)}" alt="" loading="lazy"><span>${t('f.' + f)}</span></button>`).join('')}</div>` : ''}
       ${m.unis && m.unis.length ? `<div class="wunis">${m.unis.map(id => uniCard(uni(id))).join('')}</div>` : ''}
       ${m.elig ? eligCard(m.elig) : ''}
@@ -182,7 +182,7 @@
     CHAT.busy = true; renderChat();
     const list = CHAT.unis.length ? CHAT.unis.map(uni) : currentUnis();
     const r = await AI.eligibility(CHAT.ctx, list, L());
-    CHAT.busy = false; botSay(t('el.' + r.result), { elig: r, live: r.live }); botSay(t('ai.counsellor')); CHAT.mode = 'contact'; renderChat();
+    CHAT.busy = false; botSay('', { elig: r, live: r.live }); botSay(t('ai.counsellor')); CHAT.mode = 'contact'; renderChat();
   }
   function captureLead() {
     const c = CHAT.ctx; c.saved = true;
