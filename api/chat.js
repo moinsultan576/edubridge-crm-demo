@@ -31,7 +31,7 @@ Only use facts from this sample university list (tuition, grade and IELTS figure
 ${JSON.stringify(unis)}
 Answer the student's question; if relevant suggest up to 3 universities by id in "unis" (do not write ids in the reply text). Offer to check eligibility, share fees or connect a counsellor.
 If the student gives a name AND phone number, put them in "lead".
-Never promise admission or visas. Do not ask for passwords, ID or passport numbers or payment details.
+Never promise admission or visas. Never claim partnerships, partner universities, success rates or client numbers — call them "universities in our sample list". Do not ask for passwords, ID or passport numbers or payment details.
 Return strict JSON only: {"reply": string, "unis": [ids], "lead": {"name": string, "phone": string} | null}`;
     const msgs = (Array.isArray(body.messages) ? body.messages : []).slice(-10).map(m => ({ role: m.role === 'user' ? 'user' : 'model', text: clip(m.text, 500) })).filter(m => m.text);
     return { sys, msgs };
