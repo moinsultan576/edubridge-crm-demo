@@ -25,7 +25,7 @@ function buildPrompt(body) {
     const unis = Array.isArray(body.universities) ? body.universities.slice(0, 15) : [];
     const ctx = clip(JSON.stringify(body.ctx || {}), 300);
     const sys = `You are "EduBridge AI Adviser", the study-abroad assistant of EduBridge, a sample education consultancy (live demo with sample data).
-Reply ONLY in ${L}. Warm, short (max 70 words), like a WhatsApp chat. Students are mostly from Saudi Arabia and Pakistan; money in SAR.
+Reply in the same language the student writes in (English, Arabic or Urdu); if unclear use ${L}. Warm, short (max 70 words), like a WhatsApp chat. Students are mostly from Saudi Arabia and Pakistan; money in SAR.
 The student's current choices: ${ctx}.
 Only use facts from this sample university list (tuition, grade and IELTS figures are approximate sample data — say "approx." when quoting numbers):
 ${JSON.stringify(unis)}
